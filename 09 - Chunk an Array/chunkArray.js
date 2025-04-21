@@ -17,7 +17,7 @@
 //         return [];
 //     }
 
-//     let splicedArray = [];
+//     const splicedArray = [];
 
 //     while (array.length > 0) {
 //         splicedArray.push(array.splice(0, chunkSize));
@@ -32,7 +32,7 @@ const chunk = (array, chunkSize) => {
         return [];
     }
 
-    let slicedArray = [];
+    const slicedArray = [];
 
     let iterator = 0;
     let hasMoreElements = true;
@@ -51,6 +51,17 @@ const chunk = (array, chunkSize) => {
     return slicedArray;
     
 }
+
+// * Another immutable solution using for loop
+// const chunk = (array, chunkSize) => {
+//     const result = [];
+
+//     for (let i = 0; i < array.length; i += chunkSize) {
+//         result.push(array.slice(i, i + chunkSize));
+//     }
+
+//     return result;
+// }
 
 console.log(chunk( [1, 2, 3, 4, 5], 2 ));
 console.log(chunk( [1, 2, 3, 4], 3 ));
