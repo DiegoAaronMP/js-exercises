@@ -11,7 +11,22 @@
    chunk([], 4)                // []
  */
 
-   
+// * Solution mutating the array
+// const chunk = (array, chunkSize) => {
+//     if (array.length === 0) {
+//         return [];
+//     }
+
+//     let splicedArray = [];
+
+//     while (array.length > 0) {
+//         splicedArray.push(array.splice(0, chunkSize));
+//     }
+    
+//     return splicedArray;
+// }
+
+// * Immutability function
 const chunk = (array, chunkSize) => {
     if (array.length === 0) {
         return [];
@@ -19,11 +34,22 @@ const chunk = (array, chunkSize) => {
 
     let slicedArray = [];
 
-    while (array.length > 0) {
-        slicedArray.push(array.splice(0, chunkSize));
+    let iterator = 0;
+    let hasMoreElements = true;
+    while (hasMoreElements) {
+
+        const slice = array.slice(iterator, chunkSize + iterator);
+
+        if (slice.length > 0) {
+            slicedArray.push(slice);
+            iterator += chunkSize;
+        } else {
+            hasMoreElements = false;
+        }
     }
     
     return slicedArray;
+    
 }
 
 console.log(chunk( [1, 2, 3, 4, 5], 2 ));
