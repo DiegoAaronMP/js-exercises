@@ -14,6 +14,28 @@
    capitalizeWords("  multiple   spaces ") // "  Multiple   Spaces "
  */
 
+// * My solution
+// const capitalizeWords = (string) => {
+//     if (string.length === 0 ) {
+//         return '';
+//     }
+
+//     let newString = '';
+
+//     for (let i = 0; i < string.length; i++) {
+//         if (/([a-z])/.test(string[i]) && (!/([a-z])/.test(string[i - 1]) || !string[i - 1])) {
+//             newString += string[i].toUpperCase()
+//         } else {
+//             newString += string[i]
+//         }
+//     }
+
+//     return newString;
+// }
+
+
+
+// * Another solution
 const capitalizeWords = (string) => {
     if (string.length === 0 ) {
         return '';
@@ -22,7 +44,10 @@ const capitalizeWords = (string) => {
     let newString = '';
 
     for (let i = 0; i < string.length; i++) {
-        if (/([a-z])/g.test(string[i]) && (!/([a-z])/g.test(string[i - 1]) || !string[i - 1])) {
+        const isLowercaseLetter = /[a-z]/;
+        const isWordStart = !isLowercaseLetter.test(string[i - 1]) || i === 0;
+
+        if (isWordStart) {
             newString += string[i].toUpperCase()
         } else {
             newString += string[i]
